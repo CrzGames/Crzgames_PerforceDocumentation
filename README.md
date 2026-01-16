@@ -133,14 +133,13 @@ chmod 700 ~/.gnupg
          - swarm-www:/var/www
        environment:
          # Configuration Helix Swarm
-         - SWARM_HOST=swarm.crzcommon.com
-         - SWARM_PORT=80
+         - SWARM_HOST=swarm.crzcommon.com:3000
          - SWARM_USER=swarm
-         - SWARM_PASSWD=xxxxxx (récupérer le mot de passe sur 1Password)
+         - SWARM_PASSWD=Marylene59!!!
    
          # Identifiants superuser du serveur Perforce (obligatoire pour setup Helix Swarm)
          - P4D_SUPER=crzgames
-         - P4D_SUPER_PASSWD=xxxxxx (récupérer le mot de passe sur 1Password)
+         - P4D_SUPER_PASSWD=Marylene59!!!
    
          # Connexion au serveur Perforce
          - P4D_PORT=ssl:perforce.crzcommon.com:1667 # (ATTENTION: P4D_PORT = P4PORT COMPLET)
