@@ -1,5 +1,66 @@
 # Crzgames - Perforce Documentation
 
+
+## Setup l'environnement pour le serveur PERFORCE :
+1. Go to connect SSH to VPS.
+2. Download and Install NGINX in VPS :
+   ```bash
+   sudo apt update
+   # module stream à ajouté pour TCP pur important !
+   sudo apt install -y nginx libnginx-mod-stream
+   ```
+3. Générer les certificat TLS/SSL pour le domaine "perforce.crzcommon.com" pour le serveur Perforce qui attends du TCP pur avec TLS/SSL :
+   ```bash
+   sudo apt-get update
+   sudo apt-get install -y certbot
+   sudo certbot certonly --standalone -d perforce.crzcommon.com
+
+   # Pour renouveller les certificat automatiquement
+   sudo apt-get install cron
+   sudo systemctl enable cron
+   sudo systemctl start cron
+
+   # Ajouter au fichier crontab la commande 
+   sudo crontab -e
+   0 */12 * * * certbot renew --quiet
+   ```
+4. Ajouter cela en bas du fichier (/etc/nginx/nginx.conf) :
+   ```bash
+   stream {
+     server {
+          listen 1667 ssl;  # TLS-terminated (clients connectent avec ssl:domaine:1667)
+          server_name perforce.crzcommon.com;  # Optionnel, mais utile pour SNI si multi-domaines
+  
+          # Certs Let's Encrypt (même que pour HTTP, mais réutilisables pour stream)
+          ssl_certificate /etc/letsencrypt/live/perforce.crzcommon.com/fullchain.pem;
+          ssl_certificate_key /etc/letsencrypt/live/perforce.crzcommon.com/privkey.pem;
+          ssl_protocols TLSv1.2 TLSv1.3;
+          ssl_ciphers HIGH:!aNULL:!MD5;
+          ssl_session_cache shared:SSL:10m;  # Cache sessions pour perf
+          ssl_session_timeout 10m;
+  
+          # Proxy vers backend (clair par défaut)
+          proxy_pass localhost:1667; # port du serveur perforce
+      }
+    }
+   ```
+5. Restart le serveur nginx :
+   ```bash
+   sudo nginx -t
+   sudo systemctl reload nginx
+   ```
+6. Installer cela, avant de commencer l'installation du serveur Perforce :
+```bash
+sudo apt update
+sudo apt install -y gpg
+
+mkdir -p ~/.gnupg
+chmod 700 ~/.gnupg
+````
+7. Installer et lancer le serveur PERFORCE (activé l'option unicode a true lors de l'installation, si utilisé avec helix swarm) : https://help.perforce.com/helix-core/quickstart/current/Content/quickstart/admin-install-linux.html
+
+<br /><br /><br /><br />
+
 ## Setup l'environnement pour HELIX SWARM (UI WEB) :
 1. Go to connect SSH to VPS.
 2. Download and Install Docker in VPS : https://docs.docker.com/engine/install/debian/ (for debian)
@@ -108,60 +169,6 @@
 # -d = pour lancer en arrière plan
 sudo docker compose up -d
 ```
-
-<br /><br /><br /><br />
-
-## Setup l'environnement pour le serveur PERFORCE :
-1. Go to connect SSH to VPS.
-2. Générer les certificat TLS/SSL pour le domaine "perforce.crzcommon.com" pour le serveur Perforce qui attends du TCP pur :
-   ```bash
-   sudo apt-get update
-   sudo apt-get install -y certbot
-   sudo certbot certonly --standalone -d perforce.crzcommon.com
-
-   # Pour renouveller les certificat automatiquement
-   sudo apt-get install cron
-   sudo systemctl enable cron
-   sudo systemctl start cron
-
-   # Ajouter au fichier crontab la commande 
-   sudo crontab -e
-   0 */12 * * * certbot renew --quiet
-   ```
-3. Ajouter cela en bas du fichier (/etc/nginx/nginx.conf) :
-   ```bash
-   stream {
-     server {
-          listen 1667 ssl;  # TLS-terminated (clients connectent avec ssl:domaine:1667)
-          server_name perforce.crzcommon.com;  # Optionnel, mais utile pour SNI si multi-domaines
-  
-          # Certs Let's Encrypt (même que pour HTTP, mais réutilisables pour stream)
-          ssl_certificate /etc/letsencrypt/live/perforce.crzcommon.com/fullchain.pem;
-          ssl_certificate_key /etc/letsencrypt/live/perforce.crzcommon.com/privkey.pem;
-          ssl_protocols TLSv1.2 TLSv1.3;
-          ssl_ciphers HIGH:!aNULL:!MD5;
-          ssl_session_cache shared:SSL:10m;  # Cache sessions pour perf
-          ssl_session_timeout 10m;
-  
-          # Proxy vers backend (clair par défaut)
-          proxy_pass localhost:1667; # port du serveur perforce
-      }
-    }
-   ```
-4. Restart le serveur nginx :
-   ```bash
-   sudo nginx -t
-   sudo systemctl reload nginx
-   ```
-5. Installer cela, avant de commencer l'installation du serveur Perforce :
-```bash
-sudo apt update
-sudo apt install -y gpg
-
-mkdir -p ~/.gnupg
-chmod 700 ~/.gnupg
-````
-6. Installer et lancer le serveur PERFORCE (activé l'option unicode a true lors de l'installation, si utilisé avec helix swarm) : https://help.perforce.com/helix-core/quickstart/current/Content/quickstart/admin-install-linux.html
 
 <br /><br /><br /><br />
 
