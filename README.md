@@ -259,3 +259,11 @@ Saisir :
 - User : Prenom
 
 Cliquer **Connect**.
+
+---
+
+## 🧠 Bonnes pratiques
+
+- Admin (crzgames) → uniquement pour gérer users / groupes
+- User (Corentin) → travailler dans UE
+- 1 workspace = 1 projet UE
