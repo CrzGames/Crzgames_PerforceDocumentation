@@ -254,7 +254,7 @@ Répondre `yes`.
 
 ### Se connecter
 ```bash
-p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -a
+p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login
 # Puis il vous demanderas de saisir votre mot de passe juste après cette commande.
 ```
 Vérifier :
@@ -262,7 +262,7 @@ Vérifier :
 p4 login -s
 ```
 
-### Status du ticket
+### Status du ticket (si besoin pour le vérifier)
 ```bash
 p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -s
 # SI JAMAIS il vous renvoie : "Perforce password (P4PASSWD) invalid or unset", c'est sûrement que le nom d'utilisateur n'est pas correctement écrit / jamais créer OU que vous n'êtes pas actuellement connecté donc faire via l'étape ci-dessus avant.
@@ -288,6 +288,18 @@ Saisir :
 - User : Nom du user (nom exact du user qui à était créer par le superuser dans perforce)
 
 Cliquer sur **Accepter les paramètres**.
+
+---
+
+## 🔁 Équivalence GitHub → Perforce
+
+| GitHub | Perforce |
+|------|---------|
+| Repository | Depot |
+| Commit | Changelist |
+| Branch | Stream |
+| Pull Request | Review |
+| GitHub Projects | ❌ Optionnel dans Helix Swarm |
 
 ---
 
