@@ -179,22 +179,12 @@ Si une version s’affiche → ✅ OK
 
 ---
 
-## 🌐 Informations du serveur
-
-- Serveur Perforce : ssl:perforce.crzcommon.com:1667
-- Connexion : SSL (sécurisé)
-
-⚠️ Unreal Engine **ne demande pas de mot de passe**.  
-L’authentification se fait via un **ticket** généré en ligne de commande.
-
----
-
 ## 👤 Création d’un compte Perforce (ADMIN UNIQUEMENT)
 
 ❗ Les utilisateurs **ne peuvent PAS se créer un compte eux-mêmes**.  
 Un **administrateur Perforce (superuser)** doit créer chaque compte.
 
-### Exemple avec l’admin `crzgames`
+### Exemple avec l’admin/superuser `crzgames` du serveur PEFORCE
 ```bash
 # Se connecter au compte superuser
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames login
@@ -205,6 +195,36 @@ p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames user -f prenom_du_collegue
 # Choisir un mot de passe pour le nouvelle utilisateur (en spécifiant le nom du user choisi juste avant)
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames passwd prenom_du_collegue  
 ```
+
+---
+
+## 🛠️ Création d’un groupe à timeout illimité (ADMIN UNIQUEMENT)
+
+Ces commandes doivent être exécutées par un **superuser Perforce**  
+(exemple : `crzgames`).
+
+### 1️⃣ Créer ou éditer le groupe `always_on`
+
+```bash
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames group always_on
+```
+Un éditeur texte s’ouvre.
+
+### 2️⃣ Configurer le groupe
+Dans l’éditeur, remplir ou modifier comme suit :
+```bash
+Group: always_on
+
+Timeout: unlimited
+
+Users:
+        toto
+        corentin
+```
+- Timeout: unlimited → ticket sans expiration
+- Users → liste des utilisateurs (un par ligne)
+
+Sauvegarder puis fermer l’éditeur.
 
 ---
 
