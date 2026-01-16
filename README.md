@@ -198,7 +198,7 @@ p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames passwd prenom_du_collegue
 
 ---
 
-## 🛠️ Création d’un groupe à timeout illimité (ADMIN UNIQUEMENT)
+## 🛠️ Création d’un groupe à timeout illimité et ajout des nouveaux utilisateurs au groupe (ADMIN UNIQUEMENT)
 
 Ces commandes doivent être exécutées par un **superuser Perforce**  
 (exemple : `crzgames`).
@@ -239,6 +239,7 @@ Répondre `yes`.
 ### Se connecter
 ```bash
 p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -s
+# Puis il vous demanderas de saisir votre mot de passe juste après cette commande
 ```
 Vérifier :
 ```bash
@@ -249,9 +250,10 @@ p4 login -s
 
 ## 🎮 Connexion dans Unreal Engine
 
-Source Control → Perforce
+Source Control (en bas droite de l'éditeur) → chosir le type de controle de version : Perforce
 
+Saisir : 
 - Server : ssl:perforce.crzcommon.com:1667
-- User : prenom
+- User : Prenom
 
 Cliquer **Connect**.
