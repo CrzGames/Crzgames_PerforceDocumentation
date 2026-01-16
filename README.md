@@ -195,10 +195,11 @@ L’authentification se fait via un **ticket** généré en ligne de commande.
 Un **administrateur Perforce (superuser)** doit créer chaque compte.
 
 ### Exemple avec l’admin `crzgames`
-
+```bash
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames login  
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames user -f prenom_du_collegue
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames passwd motdepasse_du_collegue  
+```
 
 ---
 
