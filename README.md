@@ -69,9 +69,10 @@ services:
       - "3000:80"
     volumes:
       - swarm-data:/opt/perforce/swarm/data
+      - swarm-www:/var/www
     environment:
       # Configuration Helix Swarm
-      - SWARM_HOST=helix-swarm
+      - SWARM_HOST=swarm.crzcommon.com
       - SWARM_PORT=80
       - SWARM_USER=swarm
       - SWARM_PASSWD=Marylene59!!!
@@ -86,9 +87,6 @@ services:
       # Connexion à Redis
       - SWARM_REDIS=helix-redis
       - SWARM_REDIS_PORT=6379
-
-      # Token (un UUID)
-      - SWARM_TOKEN=CHANGE_ME_UUID
     depends_on:
       - helix-redis
     restart: unless-stopped
@@ -102,6 +100,7 @@ services:
 
 volumes:
   swarm-data:
+  swarm-www:
   redis-data:
   ```
 8. Run le docker compose :
