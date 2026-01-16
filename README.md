@@ -154,3 +154,78 @@ sudo docker compose up -d
    sudo systemctl reload nginx
    ```
 5. Installer et lancer le serveur PERFORCE (activé l'option unicode a true lors de l'installation, si utilisé avec helix swarm) : https://help.perforce.com/helix-core/quickstart/current/Content/quickstart/admin-install-linux.html
+
+<br /><br /><br /><br />
+
+# 📘 Perforce (Helix Core) – Connexion Unreal Engine
+
+Ce guide explique **comment se connecter au serveur Perforce du projet Unreal Engine**, depuis zéro.
+
+---
+
+## 🔧 Prérequis
+
+### Installer le client Perforce (OBLIGATOIRE)
+
+Télécharger et installer **Helix Command-Line Client (P4)** :
+
+https://portal.perforce.com/s/downloads?product=Helix%20Command-Line%20Client%20%28P4%29
+
+Après installation, vérifier dans un terminal (PowerShell / CMD) :
+```bash
+p4 -V
+```
+Si une version s’affiche → ✅ OK
+
+---
+
+## 🌐 Informations du serveur
+
+- Serveur Perforce : ssl:perforce.crzcommon.com:1667
+- Connexion : SSL (sécurisé)
+
+⚠️ Unreal Engine **ne demande pas de mot de passe**.  
+L’authentification se fait via un **ticket** généré en ligne de commande.
+
+---
+
+## 👤 Création d’un compte Perforce (ADMIN UNIQUEMENT)
+
+❗ Les utilisateurs **ne peuvent PAS se créer un compte eux-mêmes**.  
+Un **administrateur Perforce (superuser)** doit créer chaque compte.
+
+### Exemple avec l’admin `crzgames`
+
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames login  
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames user -f prenom_du_collegue
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames passwd motdepasse_du_collegue  
+
+---
+
+## 🔐 Première connexion (UTILISATEUR)
+
+### Accepter le certificat SSL (une seule fois)
+```bash
+p4 -p ssl:perforce.crzcommon.com:1667 trust
+```
+Répondre `yes`.
+
+### Se connecter
+```bash
+p4 -p ssl:perforce.crzcommon.com:1667 -u user_choisi login
+```
+Vérifier :
+```bash
+p4 login -s
+```
+
+---
+
+## 🎮 Connexion dans Unreal Engine
+
+Source Control → Perforce
+
+- Server : ssl:perforce.crzcommon.com:1667
+- User : prenom
+
+Cliquer **Connect**.
