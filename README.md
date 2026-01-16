@@ -239,7 +239,8 @@ Répondre `yes`.
 ### Se connecter
 ```bash
 p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -s
-# Puis il vous demanderas de saisir votre mot de passe juste après cette commande, mais SI il vous renvoie : "Perforce password (P4PASSWD) invalid or unset", c'est sûrement que le nom d'utilisateur n'est pas bon ou jamais créer.
+# Puis il vous demanderas de saisir votre mot de passe juste après cette commande.
+# SI JAMAIS il vous renvoie : "Perforce password (P4PASSWD) invalid or unset", c'est sûrement que le nom d'utilisateur n'est pas bon ou jamais créer.
 ```
 Vérifier :
 ```bash
