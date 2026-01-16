@@ -196,9 +196,14 @@ Un **administrateur Perforce (superuser)** doit créer chaque compte.
 
 ### Exemple avec l’admin `crzgames`
 ```bash
-p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames login  
+# Se connecter au compte superuser
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames login
+
+# Choisir un nom pour le nouvelle utilisateur
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames user -f prenom_du_collegue
-p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames passwd motdepasse_du_collegue  
+
+# Choisir un mot de passe pour le nouvelle utilisateur (en spécifiant le nom du user choisi juste avant)
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames passwd prenom_du_collegue  
 ```
 
 ---
