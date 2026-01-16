@@ -303,13 +303,23 @@ Cliquer sur **Accepter les paramètres**.
 
 ---
 
-## Créer / Supprimer un dépôt
+## Créer / Supprimer un dépôt et lister les dépôts
 ```bash
-# Créer
+# Créer un dépot de type stream
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames depot UE_MyGame
+# Modifier dans le .txt qui c'est ouvert le "Type" en "stream" comme valeur.
 
-# Supprimer
+# Supprimer un dépot
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames depot -d UE_MyGame
+
+# Lister les dépots
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames depots
+```
+
+## Créer l'équivalent de la branche main, à partir d'un dépôt déjà créer de type "stream"
+```bash
+# UE_MyGame = le nom du dépot
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames stream -t mainline //UE_MyGame/main
 ```
 
 ---
