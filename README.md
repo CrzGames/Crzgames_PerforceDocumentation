@@ -265,7 +265,7 @@ p4 login -s
 ### Status du ticket
 ```bash
 p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -s
-# SI JAMAIS il vous renvoie : "Perforce password (P4PASSWD) invalid or unset", c'est sûrement que le nom d'utilisateur n'est pas bon ou jamais créer.
+# SI JAMAIS il vous renvoie : "Perforce password (P4PASSWD) invalid or unset", c'est sûrement que le nom d'utilisateur n'est pas correctement écrit / jamais créer OU que vous n'êtes pas actuellement connecté donc faire via l'étape ci-dessus avant.
 ```
 Affiche simplement :
 - si un ticket existe
