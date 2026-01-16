@@ -61,47 +61,47 @@
    ```
 7. Fichier docker-compose.yaml (helix swarm + redis) pour Perforce :
   ```bash
-services:
-  helix-swarm:
-    image: perforce/helix-swarm:latest
-    container_name: helix-swarm
-    ports:
-      - "3000:80"
-    volumes:
-      - swarm-data:/opt/perforce/swarm/data
-      - swarm-www:/var/www
-    environment:
-      # Configuration Helix Swarm
-      - SWARM_HOST=swarm.crzcommon.com
-      - SWARM_PORT=80
-      - SWARM_USER=swarm
-      - SWARM_PASSWD=Marylene59!!!
-
-      # Identifiants superuser du serveur Perforce (obligatoire pour setup Helix Swarm)
-      - P4D_SUPER=crzgames
-      - P4D_SUPER_PASSWD=Marylene59!!!
-
-      # Connexion au serveur Perforce
-      - P4D_PORT=ssl:perforce.crzcommon.com:1667 # (ATTENTION: P4D_PORT = P4PORT COMPLET)
-
-      # Connexion à Redis
-      - SWARM_REDIS=helix-redis
-      - SWARM_REDIS_PORT=6379
-    depends_on:
-      - helix-redis
-    restart: unless-stopped
-
-  helix-redis:
-    image: redis:alpine
-    container_name: helix-redis
-    volumes:
-      - redis-data:/data
-    restart: unless-stopped
-
-volumes:
-  swarm-data:
-  swarm-www:
-  redis-data:
+   services:
+     helix-swarm:
+       image: perforce/helix-swarm:latest
+       container_name: helix-swarm
+       ports:
+         - "3000:80"
+       volumes:
+         - swarm-data:/opt/perforce/swarm/data
+         - swarm-www:/var/www
+       environment:
+         # Configuration Helix Swarm
+         - SWARM_HOST=swarm.crzcommon.com
+         - SWARM_PORT=80
+         - SWARM_USER=swarm
+         - SWARM_PASSWD=Marylene59!!!
+   
+         # Identifiants superuser du serveur Perforce (obligatoire pour setup Helix Swarm)
+         - P4D_SUPER=crzgames
+         - P4D_SUPER_PASSWD=Marylene59!!!
+   
+         # Connexion au serveur Perforce
+         - P4D_PORT=ssl:perforce.crzcommon.com:1667 # (ATTENTION: P4D_PORT = P4PORT COMPLET)
+   
+         # Connexion à Redis
+         - SWARM_REDIS=helix-redis
+         - SWARM_REDIS_PORT=6379
+       depends_on:
+         - helix-redis
+       restart: unless-stopped
+   
+     helix-redis:
+       image: redis:alpine
+       container_name: helix-redis
+       volumes:
+         - redis-data:/data
+       restart: unless-stopped
+   
+   volumes:
+     swarm-data:
+     swarm-www:
+     redis-data:
   ```
 8. Run le docker compose :
 ```bash
