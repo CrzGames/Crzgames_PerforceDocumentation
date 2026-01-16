@@ -75,11 +75,11 @@
          - SWARM_HOST=swarm.crzcommon.com
          - SWARM_PORT=80
          - SWARM_USER=swarm
-         - SWARM_PASSWD=Marylene59!!!
+         - SWARM_PASSWD=xxxxxx (récupérer le mot de passe sur 1Password)
    
          # Identifiants superuser du serveur Perforce (obligatoire pour setup Helix Swarm)
          - P4D_SUPER=crzgames
-         - P4D_SUPER_PASSWD=Marylene59!!!
+         - P4D_SUPER_PASSWD=xxxxxx (récupérer le mot de passe sur 1Password)
    
          # Connexion au serveur Perforce
          - P4D_PORT=ssl:perforce.crzcommon.com:1667 # (ATTENTION: P4D_PORT = P4PORT COMPLET)
@@ -188,6 +188,7 @@ Un **administrateur Perforce (superuser)** doit créer chaque compte.
 ```bash
 # Se connecter au compte superuser
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames login
+# Saisir le mot de passe du superuser
 
 # Choisir un nom pour le nouvelle utilisateur
 p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames user -f prenom_du_collegue
