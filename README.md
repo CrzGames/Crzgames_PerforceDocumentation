@@ -153,7 +153,15 @@ sudo docker compose up -d
    sudo nginx -t
    sudo systemctl reload nginx
    ```
-5. Installer et lancer le serveur PERFORCE (activé l'option unicode a true lors de l'installation, si utilisé avec helix swarm) : https://help.perforce.com/helix-core/quickstart/current/Content/quickstart/admin-install-linux.html
+5. Installer cela, avant de commencer l'installation du serveur Perforce :
+```bash
+sudo apt update
+sudo apt install -y gpg
+
+mkdir -p ~/.gnupg
+chmod 700 ~/.gnupg
+````
+6. Installer et lancer le serveur PERFORCE (activé l'option unicode a true lors de l'installation, si utilisé avec helix swarm) : https://help.perforce.com/helix-core/quickstart/current/Content/quickstart/admin-install-linux.html
 
 <br /><br /><br /><br />
 
