@@ -303,6 +303,17 @@ Cliquer sur **Accepter les paramètres**.
 
 ---
 
+## Créer / Supprimer un dépôt
+```bash
+# Créer
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames depot UE_MyGame
+
+# Supprimer
+p4 -p ssl:perforce.crzcommon.com:1667 -u crzgames depot -d UE_MyGame
+```
+
+---
+
 ## 🧠 Bonnes pratiques
 
 - Admin (crzgames) → uniquement pour gérer users / groupes
