@@ -258,7 +258,7 @@ Saisir :
 - Server : ssl:perforce.crzcommon.com:1667
 - User : Prenom
 
-Cliquer **Connect**.
+Cliquer **Accepter les paramètres**.
 
 ---
 
