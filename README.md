@@ -167,7 +167,8 @@ chmod 700 ~/.gnupg
 # -d = pour lancer en arrière plan
 sudo docker compose up -d
 ```
-9. Se connecter via le domaine : swarm.crzcommon.com (via les identifiants SWARM_USER et SWARM_PASSWD).
+9. Quand c'est fini d'être configurer installer via les container, faire : sudo apt install helix-swarm-triggers
+10. Se connecter via le domaine : swarm.crzcommon.com (via les identifiants SWARM_USER et SWARM_PASSWD).
 
 <br /><br /><br /><br />
 
