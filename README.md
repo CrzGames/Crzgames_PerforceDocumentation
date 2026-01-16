@@ -253,13 +253,27 @@ Répondre `yes`.
 
 ### Se connecter
 ```bash
-p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -s
+p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -a
 # Puis il vous demanderas de saisir votre mot de passe juste après cette commande.
 # SI JAMAIS il vous renvoie : "Perforce password (P4PASSWD) invalid or unset", c'est sûrement que le nom d'utilisateur n'est pas bon ou jamais créer.
 ```
 Vérifier :
 ```bash
 p4 login -s
+```
+
+### Status du ticket
+```bash
+p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -s
+```
+Affiche simplement :
+- si un ticket existe
+- s’il est encore valide
+- sa date d’expiration
+
+Exemple de sortie :
+```bash
+User crzgames ticket expires in 11:59:23
 ```
 
 ---
