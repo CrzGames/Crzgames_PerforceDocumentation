@@ -218,7 +218,7 @@ Répondre `yes`.
 
 ### Se connecter
 ```bash
-p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login
+p4 -p ssl:perforce.crzcommon.com:1667 -u nom_du_user_choisi_auparavant login -s
 ```
 Vérifier :
 ```bash
