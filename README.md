@@ -271,7 +271,7 @@ Source Control (en bas droite de l'éditeur) → chosir le type de controle de v
 
 Saisir : 
 - Server : ssl:perforce.crzcommon.com:1667
-- User : Prenom
+- User : Nom du user (nom exact du user qui à était créer par le superuser dans perforce)
 
 Cliquer sur **Accepter les paramètres**.
 
